@@ -1,0 +1,6 @@
+name: ibmuec
+version: 1
+
+handlers:
+- url: /static/
+  static_path: app/static

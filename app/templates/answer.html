@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta content="" name="description">
+    <meta content="" name="author">
+    <link href="../favicon.ico" rel="icon">
+    <title>提问吧</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="../static/styles/bootstrap.min.css">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="../static/styles/main.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="ask-head">
+        <p class="lead"><span class="badge"><img style="width:20px;height:20px" src="{{headimgurl}}"></span>{% if nickname %}{{nickname}}，{% endif %}你的问题，别人解答
+    </div>
+    {% if count>0 %}
+    <div class="questions">
+        <ul class="list-group">
+            {% for q in question_list %}
+            <li class="list-group-item list-group-item-success"><span class="badge"><a
+                    style="color: #fff;"
+                    href="{{url_for('view_question')}}?question_id={{ q.id }}">去回答</a></span>{% if q.nickname %}{{
+                q.nickname }}：{% else %}匿名：{% endif %}{{ q.question }}
+            </li>
+            {% if q.answers %}
+            {% for ans in q.answers %}
+            <li class="list-group-item answer-item pdl-30">{% if ans.nickname %}{{
+                ans.nickname }}：{% else %}匿名：{% endif %}{{ ans.answer }}
+            </li>
+            {% endfor %}
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    <form name="form" action="save_question" method="post">
+        <div class="input-group input-group">
+            <input type="hidden" value="{{openid}}" name="openid">
+            <input type="hidden" value="{{nickname}}" name="nickname">
+            <span class="input-group-addon">问题：</span>
+            <input name="question" type="text" class="form-control">
+        </div>
+        <div>
+            <p style="margin:20px;" align="center">
+                <button type="button" class="btn btn-lg btn-success" onclick="save()">提交</button>
+            </p>
+        </div>
+    </form>
+</div>
+<!-- /.container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="../static/scripts/jquery-1.10.2.min.js"></script>
+<script src="../static/scripts/bootstrap.min.js"></script>
+<script>
+    function save(){
+        if(document.form.question.value != ''){
+        document.form.submit();
+        }else
+        alert('请先输入问题');
+        return false;
+    }
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta content="" name="description">
+    <meta content="" name="author">
+    <link href="../favicon.ico" rel="icon">
+    <title>签到表</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="../static/styles/bootstrap.min.css">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="../static/styles/main.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="ask-head">
+        <p class="lead">课程签到情况
+    </div>
+    {% if s %}
+    <div class="questions">
+        <ul class="list-group">
+            {% for q in s %}
+            <li class="list-group-item list-group-item-success"><span class="badge"><img style="width:20px;height:20px"
+                                                                                         src="{{q.headimgurl}}"></span>第{{
+                q.count_index }}名: {% if q.nickname %}{{ q.nickname }}{% else
+                %}匿名{% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+<!-- /.container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="../static/scripts/jquery-1.10.2.min.js"></script>
+<script src="../static/scripts/bootstrap.min.js"></script>
+</body>
+</html>
