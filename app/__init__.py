@@ -9,8 +9,8 @@ sys.setdefaultencoding('utf-8')
 from flask import Flask, g
 from flask_peewee.db import Database
 import MySQLdb
-# import setting
-import settingsae
+import setting
+# import settingsae
 from peewee import *
 
 app = Flask(__name__)
@@ -29,10 +29,10 @@ db = Database(app)
 
 @app.before_request
 def before_request():
-    # g.db = MySQLdb.connect(setting.MYSQL_HOST_M, setting.MYSQL_USER, setting.MYSQL_PASS,
-    #                        setting.MYSQL_DB, port=int(setting.MYSQL_PORT), charset='utf8')
-    g.db = MySQLdb.connect(settingsae.MYSQL_HOST_M, settingsae.MYSQL_USER, settingsae.MYSQL_PASS,
-                           settingsae.MYSQL_DB, port=int(settingsae.MYSQL_PORT), charset='utf8')
+    g.db = MySQLdb.connect(setting.MYSQL_HOST_M, setting.MYSQL_USER, setting.MYSQL_PASS,
+                           setting.MYSQL_DB, port=int(setting.MYSQL_PORT), charset='utf8')
+    # g.db = MySQLdb.connect(settingsae.MYSQL_HOST_M, settingsae.MYSQL_USER, settingsae.MYSQL_PASS,
+    #                        settingsae.MYSQL_DB, port=int(settingsae.MYSQL_PORT), charset='utf8')
 
 
 @app.teardown_request
